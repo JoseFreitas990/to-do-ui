@@ -7,6 +7,7 @@ interface Topic {
 
 export const topicApi = createApi({
   reducerPath: "topicApi",
+
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:4000/",
   }),

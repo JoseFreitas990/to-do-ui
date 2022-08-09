@@ -20,11 +20,7 @@ const Homepage = () => {
         <div style={{ display: "flex" }}>
           <TopicSection>
             {topics.data?.map((topic, index) => {
-              return (
-                <>
-                  <Topic topic={topic} />
-                </>
-              );
+              return <Topic key={topic.id} topic={topic} index={index} />;
             })}
           </TopicSection>
         </div>
