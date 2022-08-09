@@ -47,7 +47,7 @@ const Login = () => {
                   type='password'
                   setValue={setPassword}
                 />
-                <Button onClick={handleSubmit}>Login</Button>
+                <Button onClick={() => navigate("/home")}>Login</Button>
                 <Divider>
                   <Line />
                   <DividerText>or</DividerText>

@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { Landing, Login } from "pages";
 import Register from "pages/Register";
+import Homepage from "pages/Homepage";
 
 const authenticated = false;
 
@@ -19,6 +20,7 @@ function App() {
             <Route path='/' element={<Landing />} />
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
+            <Route path='/home' element={<Homepage />} />
           </Routes>
         </Router>
       </ThemeProvider>
