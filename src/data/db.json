@@ -1,0 +1,64 @@
+{
+  "topics": [
+    {
+      "id": 0,
+      "name": "Programming"
+    },
+    {
+      "id": 1,
+      "name": "House"
+    },
+    {
+      "id": 2,
+      "title": "Gym"
+    },
+    {
+      "id": 3,
+      "title": "University"
+    }
+  ],
+  "tasks": [
+    {
+      "id": 0,
+      "topicId": 0,
+      "title": "HTML",
+      "description": "Try out new animations",
+      "completed": false
+    },
+    {
+      "id": 1,
+      "topicId": 0,
+      "title": "React",
+      "description": "Study Redux and Styled Components",
+      "completed": true
+    },
+    {
+      "id": 2,
+      "topicId": 0,
+      "title": "node.js",
+      "description": "Understand JWT",
+      "completed": true
+    },
+    {
+      "id": 4,
+      "topicId": 0,
+      "title": "Angular",
+      "description": "",
+      "completed": false
+    },
+    {
+      "id": 6,
+      "topicId": 1,
+      "title": "Clean room",
+      "description": "Until friday",
+      "completed": false
+    },
+    {
+      "id": 5,
+      "topicId": 1,
+      "title": "Get bag ready for vacation",
+      "description": "Don't forget the charger!!",
+      "completed": false
+    }
+  ]
+}
