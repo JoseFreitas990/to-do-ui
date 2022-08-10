@@ -15,12 +15,11 @@ export const TaskHeader = styled.div`
 `;
 
 export const TaskItemsContainer = styled.div`
+  width: 100%;
   background-color: ${(props) => props.theme.greenSecondary};
   box-shadow: 2px 2px 0 ${(props) => props.theme.secondary};
   padding: 1rem 1rem;
   display: flex;
   flex-direction: column;
-  min-width: 25vw;
-  color: white;
   word-wrap: break-word;
 `;

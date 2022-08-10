@@ -5,13 +5,23 @@ import Topic from "features/topic/Topic";
 import { useGetTopicsQuery } from "features/topic/topicApi";
 import { setActiveTopic } from "features/topic/topicSlice";
 import Sidemenu from "features/ui/Sidemenu";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Page, TopicSection, WelcomeText } from "./styles";
+
+interface ITask {
+  id: number;
+  title: string;
+  topicId: number;
+  description: string;
+  completed: boolean;
+}
 
 const Homepage = () => {
   const topics = useGetTopicsQuery();
 
   const tasks = useGetTasksQuery();
+
+  const [activeTask, setActiveTask] = useState<any>();
 
   return (
     <Page>
@@ -34,17 +44,19 @@ const Homepage = () => {
                 <Topic
                   key={topic.id}
                   topic={topic}
+                  activeTask={activeTask}
+                  setActiveTask={setActiveTask}
                   tasks={filteredTasks}
                   index={index}
                 />
               );
             })}
           </TopicSection>
-          {/* <TopicSection>
-            {tasks.data?.map((task, index) => {
-              return <Task key={task.id} />;
-            })}
-          </TopicSection> */}
+          {activeTask ? (
+            <TopicSection>
+              <Task activeTask={activeTask} />
+            </TopicSection>
+          ) : null}
         </div>
       </Container>
     </Page>

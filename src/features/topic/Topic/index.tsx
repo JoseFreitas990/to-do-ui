@@ -32,32 +32,22 @@ interface TopicProps {
   topic: ITopic;
   tasks?: ITask[];
   index: number;
+  activeTask: ITask;
+  setActiveTask: any;
 }
 
 const Topic = (props: TopicProps) => {
-  const { topic, index, tasks } = props;
+  const { topic, index, tasks, activeTask, setActiveTask } = props;
 
   const [openTopic, setOpenTopic] = useState<number[]>([]);
 
   const [editTopic, setEditTopic] = useState<number[]>([]);
-
-  const [activeTask, setActiveTask] = useState([]);
 
   const [topicDeleteArray, setTopicDeleteArray] = useState<number[]>([]);
 
   const [topicInput, setTopicInput] = useState("");
 
   const [deleteOpen, setDeleteOpen] = useState(false);
-
-  const activeSubTopicHandler = (item: any) => {
-    if (item === activeTask) {
-      setActiveTask([]);
-    } else {
-      setActiveTask(item);
-      setActiveTask([]);
-    }
-    //item -> subtopic information
-  };
 
   const openTopicHandler = (id: number) => {
     setTopicDeleteArray([]);
@@ -91,7 +81,6 @@ const Topic = (props: TopicProps) => {
     if (deleteOpen && editTopic.includes(index)) {
       addTopicHandler(item.id);
     } else {
-      activeSubTopicHandler(item);
     }
   };
   return (
@@ -133,8 +122,8 @@ const Topic = (props: TopicProps) => {
         )}
         {tasks?.map((task, index) => {
           return (
-            <SubTopicContainer>
-              <TaskItem>
+            <SubTopicContainer key={task.id}>
+              <TaskItem onClick={() => setActiveTask(task)}>
                 <TaskText>{task.title}</TaskText>
               </TaskItem>
               <Line />
