@@ -2,51 +2,102 @@ import Add from "assets/Add/Add";
 import Cross from "assets/Cross/Cross";
 import Ok from "assets/Ok/Ok";
 import Pencil from "assets/Pencil/Pencil";
-import { Input } from "components";
 import React, { useState } from "react";
 import {
   ButtonsContainer,
   InputContainer,
+  Line,
+  SubTopicContainer,
+  TaskItem,
+  TaskText,
   TopicContainer,
   TopicHeader,
+  Input,
   TopicItemsContainer,
 } from "./styles";
 
-type TopicProps = {
+type ITopic = {
   id: number;
-  name: string;
+  title: string;
 };
 
-interface Topic {
-  topic: TopicProps;
+type ITask = {
+  id: number;
+  topicId: number;
+  title: string;
+  description: string;
+  completed: boolean;
+};
+interface TopicProps {
+  topic: ITopic;
+  tasks?: ITask[];
   index: number;
 }
 
-const Topic = (props: Topic) => {
-  const { topic, index } = props;
+const Topic = (props: TopicProps) => {
+  const { topic, index, tasks } = props;
 
   const [openTopic, setOpenTopic] = useState<number[]>([]);
 
   const [editTopic, setEditTopic] = useState<number[]>([]);
 
+  const [activeTask, setActiveTask] = useState([]);
+
+  const [topicDeleteArray, setTopicDeleteArray] = useState<number[]>([]);
+
+  const [topicInput, setTopicInput] = useState("");
+
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  const activeSubTopicHandler = (item: any) => {
+    if (item === activeTask) {
+      setActiveTask([]);
+    } else {
+      setActiveTask(item);
+      setActiveTask([]);
+    }
+    //item -> subtopic information
+  };
+
   const openTopicHandler = (id: number) => {
+    setTopicDeleteArray([]);
     setOpenTopic([id]);
     setEditTopic([]);
+    setDeleteOpen(false);
   };
 
   const editTopicHandler = (id: number) => {
+    setDeleteOpen(true);
+    setTopicDeleteArray([]);
     setEditTopic([id]);
     setOpenTopic([]);
   };
 
-  const deleteAndCloseEditerHandler = () => {
-    setEditTopic([]);
+  const addTopicHandler = (id: number) => {
+    if (topicDeleteArray.includes(id)) {
+      setTopicDeleteArray(topicDeleteArray.filter((item) => item !== id));
+    } else {
+      setTopicDeleteArray((oldArray) => [...oldArray, id]);
+    }
   };
 
+  const deleteAndCloseEditerHandler = () => {
+    setTopicDeleteArray([]);
+    setEditTopic([]);
+    setDeleteOpen(false);
+  };
+
+  const selectOrDelete = (item: any, index: any) => {
+    if (deleteOpen && editTopic.includes(index)) {
+      addTopicHandler(item.id);
+    } else {
+      activeSubTopicHandler(item);
+    }
+  };
   return (
     <TopicContainer>
       <TopicHeader>
-        <span>{topic.name}</span>
+        <span>{topic.title}</span>
 
         <ButtonsContainer>
           {!openTopic.includes(index) ? (
@@ -60,24 +111,36 @@ const Topic = (props: Topic) => {
                 <>
                   <Ok />
                   <Cross onClick={() => deleteAndCloseEditerHandler()} />
-                  <Cross />
                 </>
               )}
             </>
           ) : (
             <>
-              <Ok />
+              <Ok onClick={() => console.log("Adicionado")} />
               <Cross onClick={() => setOpenTopic([])} />
             </>
           )}
         </ButtonsContainer>
       </TopicHeader>
       <TopicItemsContainer>
-        {/* {openTopic.includes(index) && (
+        {openTopic.includes(index) && (
           <InputContainer>
-            <Input />
+            <Input
+              value={topicInput}
+              onChange={(e) => setTopicInput(e.currentTarget.value)}
+            />
           </InputContainer>
-        )} */}
+        )}
+        {tasks?.map((task, index) => {
+          return (
+            <SubTopicContainer>
+              <TaskItem>
+                <TaskText>{task.title}</TaskText>
+              </TaskItem>
+              <Line />
+            </SubTopicContainer>
+          );
+        })}
       </TopicItemsContainer>
     </TopicContainer>
   );

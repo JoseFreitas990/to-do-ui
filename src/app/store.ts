@@ -1,12 +1,15 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { topicApi } from "features/topic/Topic/topicApi";
-
+import { taskApi } from "features/task/taskApi";
+import { topicApi } from "features/topic/topicApi";
+import topicReducer from "features/topic/topicSlice";
 export const store = configureStore({
   reducer: {
+    topic: topicReducer,
     [topicApi.reducerPath]: topicApi.reducer,
+    [taskApi.reducerPath]: taskApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(topicApi.middleware),
+    getDefaultMiddleware().concat(topicApi.middleware, taskApi.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

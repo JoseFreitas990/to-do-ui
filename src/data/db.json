@@ -2,11 +2,11 @@
   "topics": [
     {
       "id": 0,
-      "name": "Programming"
+      "title": "Programming"
     },
     {
       "id": 1,
-      "name": "House"
+      "title": "House"
     },
     {
       "id": 2,

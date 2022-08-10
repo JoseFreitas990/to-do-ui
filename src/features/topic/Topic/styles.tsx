@@ -50,3 +50,26 @@ export const Input = styled.input`
   font-size: ${(props) => props.theme.fontmd};
   color: ${(props) => props.theme.black};
 `;
+
+export const TaskItem = styled.div`
+  display: flex;
+
+  justify-content: space-between;
+  font-size: ${(props) => props.theme.fontlg};
+  color: ${(props) => props.theme.white};
+  font-weight: 100;
+  padding: 0.3rem 0;
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+`;
+
+export const TaskText = styled.span``;
+
+export const Line = styled.div`
+  height: 1px;
+  width: 100%;
+  background-color: ${(props) => props.theme.white};
+`;

@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 interface Topic {
   id: number;
-  name: string;
+  title: string;
 }
 
 export const topicApi = createApi({
