@@ -23,3 +23,26 @@ export const TaskItemsContainer = styled.div`
   flex-direction: column;
   word-wrap: break-word;
 `;
+
+export const TaskTitleContainer = styled.div`
+  display: flex;
+  align-items: center;
+  word-break: break-all;
+  padding-top: 0.5rem;
+`;
+
+export const State = styled.h2`
+  margin-right: 0.5rem;
+  cursor: pointer;
+`;
+
+export const TaskTitle = styled.h2`
+  font-size: ${(props) => props.theme.fontlg};
+  font-weight: 500;
+`;
+
+export const TaskDescription = styled.p`
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: ${(props) => props.theme.fontmd};
+`;

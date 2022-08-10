@@ -1,5 +1,13 @@
 import React from "react";
-import { TaskContainer, TaskHeader, TaskItemsContainer } from "./styles";
+import {
+  State,
+  TaskContainer,
+  TaskDescription,
+  TaskHeader,
+  TaskItemsContainer,
+  TaskTitle,
+  TaskTitleContainer,
+} from "./styles";
 
 interface Task {
   id: number;
@@ -22,7 +30,14 @@ const Task = (props: TaskProps) => {
       <TaskHeader>
         <span>{activeTask?.title}</span>
       </TaskHeader>
-      <TaskItemsContainer></TaskItemsContainer>
+      <TaskItemsContainer>
+        <TaskTitleContainer>
+          <State>Circulo</State>
+          <TaskTitle>{activeTask?.title}</TaskTitle>
+        </TaskTitleContainer>
+
+        <TaskDescription>{activeTask?.description}</TaskDescription>
+      </TaskItemsContainer>
     </TaskContainer>
   );
 };
